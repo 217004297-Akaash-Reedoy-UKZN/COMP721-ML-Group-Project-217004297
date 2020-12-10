@@ -77,6 +77,7 @@ y_pred = clf.fit_predict(X_train)
 LOF_Scores = clf.negative_outlier_factor_
 LOF_pred=pd.Series(y_pred).replace([-1,1],[1,0])
 LOF_anomalies=X_train[LOF_pred==1]
+LOF_anomalies=LOF_anomalies[LOF_anomalies['pts']>=0.2]
 plt.scatter(X_train.iloc[:,2],X_train.iloc[:,1],c='grey',s=20,edgecolor='black')
 plt.scatter(LOF_anomalies.iloc[: ,2], LOF_anomalies.iloc[: ,1], c='red', edgecolor='black')
 plt.title('LOF Outlier Detection')
